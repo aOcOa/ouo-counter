@@ -1,0 +1,22 @@
+.o-custom{
+ 
+  width:600px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.o-custom-carouselElement{
+ min-height: 300px;
+  background-color: rgb(202, 199, 199);
+  color: white;
+  letter-spacing: 2px;
+  position: relative;
+}
+.o-custom-text{
+  font-weight: 200;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  position: absolute;
+  font-size: 28px;
+  margin: 0;
+}
