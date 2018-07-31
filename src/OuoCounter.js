@@ -1,5 +1,10 @@
 class Counter {
-  constructor({ context = document, counterDom, maxValue, handleMaxEvent = ()=> null }) {
+  constructor({
+    context = document,
+    counterDom,
+    maxValue,
+    handleMaxEvent = () => null
+  }) {
     this.counterDom = counterDom;
     this.context = context;
     this.maxValue = maxValue;
@@ -8,7 +13,7 @@ class Counter {
       this.bindEvent();
     });
   }
-  reset(maxValue){
+  reset(maxValue) {
     this.maxValue = maxValue || this.maxValue;
     this.valueDom.textContent = 1;
   }
@@ -60,12 +65,21 @@ class Counter {
     const currentValue = parseInt(this.valueDom.textContent, 10);
     switch (action) {
       case "minus":
-        this.valueDom.textContent = currentValue - 1 < 1 ? 1 : currentValue - 1;
+        if (currentValue - 1 < 1) {
+          this.valueDom.textContent = 1;
+          this.minusDom.className += this.minusDom.className.indexOf(" is-disabled") !== -1? "":" is-disabled";
+        } else {
+          this.addDom.className = this.addDom.className.replace(" is-disabled", "");
+          this.valueDom.textContent = currentValue - 1;
+        }
+
         break;
       case "add":
         if (currentValue + 1 <= this.maxValue) {
+          this.minusDom.className = this.minusDom.className.replace(" is-disabled", "");
           this.valueDom.textContent = currentValue + 1;
         } else {
+          this.addDom.className += this.addDom.className.indexOf(" is-disabled") !== -1 ? "" : " is-disabled";
           this.handleMaxEvent();
         }
         break;
